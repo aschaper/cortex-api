@@ -30,10 +30,10 @@ class EventsController < ApplicationController
       start: event.conditions.first.created_at,
       stop: event.conditions.last.created_at,
       time_asleep: event.total_time_asleep,
-      sleep_quality: event.sleep_quality,
       light: event.average_of(:light).round,
       temperature: event.average_of(:temperature).round,
       noise: event.average_of(:noise).round,
+      movements: event.movements.map(&:created_at),
       date: event.created_at
     }
 

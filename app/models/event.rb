@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   has_many :conditions
+  has_many :movements
 
   def sleep_score
     score = 10
@@ -56,11 +57,5 @@ class Event < ApplicationRecord
     last_condition  = self.conditions.last
 
     ((last_condition.created_at.to_time - first_condition.created_at.to_time) / 60.0 / 60.0).round(1)
-  end
-
-  def sleep_quality
-    grouped_by_hour = self.conditions.group_by{|condition| condition.created_at.strftime("%H")}
-
-    grouped_by_hour.map{|hour, movements| movements.select{|movement| movement.moved == 1}.size}
   end
 end
