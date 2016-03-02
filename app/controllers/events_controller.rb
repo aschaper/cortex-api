@@ -1,3 +1,6 @@
+require './lib/push/apns'
+require './lib/push/message'
+
 class EventsController < ApplicationController
 
   def create
