@@ -37,6 +37,7 @@ class EventsController < ApplicationController
       temperature: event.average_of(:temperature).round.to_s,
       noise: event.average_of(:noise).round.to_s,
       movements: event.movements.map(&:created_at),
+      movement_count: event.movements.size.to_s,
       date: event.created_at
     }
 
