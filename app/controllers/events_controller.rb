@@ -30,8 +30,8 @@ class EventsController < ApplicationController
     summary = {
       event_id: event.uuid,
       sleep_score: event.sleep_score.to_s,
-      start: event.conditions.first.created_at,
-      stop: event.conditions.last.created_at,
+      start: event.created_at,
+      stop: event.stopped_at,
       time_asleep: event.total_time_asleep.to_s,
       light: event.average_of(:light).round.to_s,
       temperature: event.average_of(:temperature).round.to_s,
@@ -44,8 +44,10 @@ class EventsController < ApplicationController
     render json: summary.to_json
   end
 
-  def send_event_summary
+  def stop
     event = Event.where(uuid: params[:id]).first
+
+    event.update_attribute :stopped_at, Time.now
 
     notification = ::Push::APNS.new(event)
     notification.send!

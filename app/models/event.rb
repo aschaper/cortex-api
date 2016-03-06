@@ -53,9 +53,6 @@ class Event < ApplicationRecord
   end
 
   def total_time_asleep
-    first_condition = self.conditions.first
-    last_condition  = self.conditions.last
-
-    ((last_condition.created_at.to_time - first_condition.created_at.to_time) / 60.0 / 60.0).round(1)
+    ((self.stopped_at.to_time - self.created_at.to_time) / 60.0 / 60.0).round(1)
   end
 end

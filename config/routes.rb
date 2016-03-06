@@ -4,6 +4,6 @@ Rails.application.routes.draw do
     resources :movements
 
     get 'latest', on: :collection
-    post 'send_event_summary', on: :member
+    post 'stop', on: :member
   end
 end

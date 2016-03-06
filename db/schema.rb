@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301040730) do
+ActiveRecord::Schema.define(version: 20160306010826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160301040730) do
     t.string   "uuid"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.datetime "stopped_at"
   end
 
   create_table "movements", force: :cascade do |t|
