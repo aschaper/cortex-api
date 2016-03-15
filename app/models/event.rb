@@ -55,4 +55,12 @@ class Event < ApplicationRecord
   def total_time_asleep
     ((self.stopped_at.to_time - self.created_at.to_time) / 60.0 / 60.0).round(1)
   end
+
+  def total_time_asleep_formatted
+    time_asleep = total_time_asleep
+    hours = time_asleep.floor
+    minutes = ((time_asleep % hours) * 60).round
+
+    "#{hours}h #{minutes}m"
+  end
 end

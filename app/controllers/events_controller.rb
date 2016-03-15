@@ -32,7 +32,7 @@ class EventsController < ApplicationController
       sleep_score: event.sleep_score.to_s,
       start: event.created_at,
       stop: event.stopped_at,
-      time_asleep: event.total_time_asleep.to_s,
+      time_asleep: event.total_time_asleep_formatted,
       light: event.average_of(:light).round.to_s,
       temperature: event.average_of(:temperature).round.to_s,
       noise: event.average_of(:noise).round.to_s,
